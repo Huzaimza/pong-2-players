@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pong - 1 or 2 Player</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Pong Game</h2>
+    <div id="mode-select">
+        <button onclick="showSettings(1)">1 Player</button>
+        <button onclick="showSettings(2)">2 Player</button>
+    </div>
+    <div id="settings" style="display:none;margin-top:20px;">
+        <form id="settings-form" onsubmit="return false;">
+            <div style="margin-bottom:10px;">
+                <label><b>Left Paddle Color:</b>
+                    <input type="color" id="paddle1-color" value="#00ffff">
+                </label>
+                &nbsp;&nbsp;
+                <label><b>Right Paddle Color:</b>
+                    <input type="color" id="paddle2-color" value="#ffff00">
+                </label>
+            </div>
+            <div id="difficulty-group" style="margin-bottom:10px;display:none;">
+                <b>Difficulty:</b>
+                <label><input type="radio" name="difficulty" value="easy" checked> Easy</label>
+                <label><input type="radio" name="difficulty" value="medium"> Medium</label>
+                <label><input type="radio" name="difficulty" value="hard"> Hard</label>
+            </div>
+            <div id="timelimit-group" style="margin-bottom:10px;">
+                <b>Time Limit:</b>
+                <label><input type="radio" name="timelimit" value="0" checked> Unlimited</label>
+                <label><input type="radio" name="timelimit" value="120"> 2 min</label>
+                <label><input type="radio" name="timelimit" value="300"> 5 min</label>
+                <label><input type="radio" name="timelimit" value="600"> 10 min</label>
+                <label><input type="radio" name="timelimit" value="900"> 15 min</label>
+                <label><input type="radio" name="timelimit" value="1200"> 20 min</label>
+            </div>
+            <button id="start-btn" type="button" onclick="startGameFromSettings()">Start Game</button>
+            <button id="back-btn" type="button" onclick="backToModeSelect()" style="margin-left:10px;">Back</button>
+        </form>
+    </div>
+    <div id="scoreboard" style="display:none;">
+        <span id="score1">0</span>
+        <span> : </span>
+        <span id="score2">0</span>
+    </div>
+    <div id="timer" style="display:none;font-size:1.4rem;margin-bottom:10px;color:#0ff;"></div>
+    <canvas id="pong" width="800" height="500" style="display:none;"></canvas>
+    <div id="pause-controls" style="display:none; margin-top: 15px;">
+        <button id="pause-btn" onclick="pauseGame()">Pause/Quit</button>
+    </div>
+    <p id="controls" style="display:none;">
+        <span id="controls-1p" style="display:none;">Player: W/S or &#8593;/&#8595; &nbsp; | &nbsp; <b>Pause:</b> Esc or Pause/Quit button</span>
+        <span id="controls-2p" style="display:none;">P1: W/S &nbsp; | &nbsp; P2: &#8593;/&#8595; &nbsp; | &nbsp; <b>Pause:</b> Esc or Pause/Quit button</span>
+        <span id="controls-mobile" style="display:none;">Use on-screen arrows on mobile!</span>
+    </p>
+    <div id="how-to-play" style="max-width:700px;margin:20px auto 0 auto; background:#232323;padding:16px 22px;border-radius:12px;box-shadow:0 2px 18px #0007;">
+        <h3 style="margin-top:0;">How to Play</h3>
+        <ul style="text-align:left;">
+            <li>Choose <b>1 Player</b> (vs Computer) or <b>2 Player</b> (vs a friend) mode.</li>
+            <li><b>Player 1 (Left Paddle):</b> Use <b>W</b> (up) and <b>S</b> (down) or <b>Up/Down Arrow</b> keys, or on-screen arrows on mobile.</li>
+            <li><b>Player 2 (Right Paddle):</b> Use <b>Up/Down Arrow</b> keys (only in 2 Player mode), or on-screen arrows on mobile.</li>
+            <li>Press <b>Pause/Quit</b> button or <b>Esc</b> key to pause and return to mode selection.</li>
+            <li>Score by getting the ball past your opponent's paddle.</li>
+            <li>First to reach your own chosen score wins (no limit by default).</li>
+            <li>If you choose a time limit, the game will end when time runs out. Highest score wins!</li>
+        </ul>
+    </div>
+    <div id="huzaimza-credit">
+        <span>made by Huzaimza</span>
+    </div>
+
+    <!-- Touch controls for mobile -->
+    <div id="touch-controls">
+        <div style="display: flex; justify-content: space-between; width: 100vw;">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
+                <button class="touch-btn" id="p1-up">&#8679;</button>
+                <button class="touch-btn" id="p1-down">&#8681;</button>
+            </div>
+            <div style="flex:1;"></div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
+                <button class="touch-btn" id="p2-up">&#8679;</button>
+                <button class="touch-btn" id="p2-down">&#8681;</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
