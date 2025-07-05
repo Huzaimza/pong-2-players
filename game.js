@@ -294,12 +294,12 @@ function update() {
 // Desktop keyboard controls
 document.addEventListener('keydown', e => {
     // Player 1 (W/S or Up/Down)
-    if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') p1DY = -PADDLE_SPEED;
-    if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') p1DY = PADDLE_SPEED;
+    if (e.key === 'w' || e.key === 'W' || e.key === '') p1DY = -PADDLE_SPEED;
+    if (e.key === 's' || e.key === 'S' || e.key === '') p1DY = PADDLE_SPEED;
     // Player 2 (2P mode: Up/Down)
     if (mode === 2) {
-        if (e.key === 'ArrowLeft') p2DY = -PADDLE_SPEED;
-        if (e.key === 'ArrowRight') p2DY = PADDLE_SPEED;
+        if (e.key === 'ArrowUp') p2DY = -PADDLE_SPEED;
+        if (e.key === 'ArrowDown') p2DY = PADDLE_SPEED;
     }
     // Also allow pressing Escape to pause/quit
     if (running && (e.key === 'Escape' || e.key === 'Esc')) {
