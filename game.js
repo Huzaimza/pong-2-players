@@ -298,8 +298,8 @@ document.addEventListener('keydown', e => {
     if (e.key === 's' || e.key === 'S' || e.key === '') p1DY = PADDLE_SPEED;
     // Player 2 (2P mode: Up/Down)
     if (mode === 2) {
-        if (e.key === 'ArrowUp') p2DY = -PADDLE_SPEED;
-        if (e.key === 'ArrowDown') p2DY = PADDLE_SPEED;
+        if (e.key === '0') p2DY = -PADDLE_SPEED;
+        if (e.key === 'o') p2DY = PADDLE_SPEED;
     }
     // Also allow pressing Escape to pause/quit
     if (running && (e.key === 'Escape' || e.key === 'Esc')) {
@@ -309,10 +309,10 @@ document.addEventListener('keydown', e => {
 document.addEventListener('keyup', e => {
     // Player 1
     if (e.key === 'w' || e.key === 'W' || e.key === 's' || e.key === 'S' ||
-        (mode === 1 && (e.key === 'ArrowUp' || e.key === 'ArrowDown'))
+        (mode === 1 && (e.key === '' || e.key === ''))
     ) p1DY = 0;
     // Player 2
-    if (mode === 2 && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) p2DY = 0;
+    if (mode === 2 && (e.key === '0' || e.key === 'o')) p2DY = 0;
 });
 
 // --- Touch controls for mobile ---
